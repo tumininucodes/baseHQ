@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import androidx.recyclerview.widget.RecyclerView.inflate
 import com.base.basehq.R
 import com.base.basehq.databinding.ChildCategoryBinding
+import com.base.basehq.utils.capitalise
 import kotlinx.coroutines.flow.combine
 
 class CategoryAdapter : ListAdapter<String, CategoryAdapter.ViewHolder>(COMPARATOR) {
@@ -40,7 +41,7 @@ class CategoryAdapter : ListAdapter<String, CategoryAdapter.ViewHolder>(COMPARAT
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.binding.tvCategory.text = getItem(position)
+        holder.binding.tvCategory.text = getItem(position).capitalise()
     }
 
     inner class ViewHolder(val binding: ChildCategoryBinding) :

@@ -34,9 +34,6 @@ class HomeFragment : Fragment() {
         )[HomeViewModel::class.java]
 
         adapter = CategoryAdapter()
-        binding.rvCategories.adapter = adapter
-        binding.rvCategories.layoutManager = GridLayoutManager(requireContext(), 2)
-        binding.rvCategories.setHasFixedSize(true)
 
         lifecycleScope.launch {
             viewModel.getAllCategories().collect { resultState ->
@@ -47,6 +44,10 @@ class HomeFragment : Fragment() {
                     is NetworkResult.Success -> {
                         println("result: ${resultState.data}")
                         binding.progressBar.visibility = View.GONE
+
+                        binding.rvCategories.adapter = adapter
+                        binding.rvCategories.layoutManager = GridLayoutManager(requireContext(), 2)
+                        binding.rvCategories.setHasFixedSize(true)
                         adapter.submitList(resultState.data)
                     }
                     is NetworkResult.Error -> {

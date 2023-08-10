@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.GridLayoutManager
 import com.base.basehq.R
 import com.base.basehq.databinding.FragmentHomeBinding
 import com.base.basehq.utils.NetworkResult
@@ -18,17 +19,24 @@ class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
     private lateinit var viewModel: HomeViewModel
+    private lateinit var adapter: CategoryAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View {
 
+        _binding = FragmentHomeBinding.inflate(inflater)
+
         viewModel = ViewModelProvider(
             this,
             ViewModelProvider.NewInstanceFactory.instance
         )[HomeViewModel::class.java]
 
+        adapter = CategoryAdapter()
+        binding.rvCategories.adapter = adapter
+        binding.rvCategories.layoutManager = GridLayoutManager(requireContext(), 2)
+        binding.rvCategories.setHasFixedSize(true)
 
         lifecycleScope.launch {
             viewModel.getAllCategories().collect { resultState ->
@@ -37,10 +45,12 @@ class HomeFragment : Fragment() {
                         binding.progressBar.visibility = View.VISIBLE
                     }
                     is NetworkResult.Success -> {
+                        println("result: ${resultState.data}")
                         binding.progressBar.visibility = View.GONE
-
+                        adapter.submitList(resultState.data)
                     }
                     is NetworkResult.Error -> {
+                        println("result error: ${resultState.error.message}")
                         binding.progressBar.visibility = View.GONE
                     }
                 }

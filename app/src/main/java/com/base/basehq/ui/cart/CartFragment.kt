@@ -1,24 +1,24 @@
 package com.base.basehq.ui.cart
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
-import com.base.basehq.R
+import com.base.basehq.data.db.cart.CartProduct
 import com.base.basehq.databinding.FragmentCartBinding
-import com.base.basehq.ui.HomeViewModel
-import kotlinx.coroutines.flow.collect
+import com.base.basehq.domain.interfaces.OnCartProductClickListener
 import kotlinx.coroutines.launch
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
-class CartFragment : Fragment() {
+class CartFragment : Fragment(), OnCartProductClickListener {
 
-    private lateinit var viewModel: CartViewModel
+    private val viewModel: CartViewModel by viewModel()
     private var _binding: FragmentCartBinding? = null
     private val binding get() = _binding!!
+    private lateinit var adapter: CartAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -27,11 +27,7 @@ class CartFragment : Fragment() {
 
         _binding = FragmentCartBinding.inflate(inflater)
 
-        viewModel = ViewModelProvider(
-            this,
-            ViewModelProvider.NewInstanceFactory.instance
-        )[CartViewModel::class.java]
-
+        adapter = CartAdapter(requireContext(), this)
 
         lifecycleScope.launch {
             viewModel.getCartProducts().collect {
@@ -39,8 +35,11 @@ class CartFragment : Fragment() {
             }
         }
 
-
         return binding.root
+    }
+
+    override fun onItemClick(item: CartProduct, position: Int) {
+
     }
 
 }

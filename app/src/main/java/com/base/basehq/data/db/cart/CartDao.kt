@@ -1,19 +1,13 @@
 package com.base.basehq.data.db.cart
 
-import androidx.room.Delete
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
-import androidx.room.Update
+import androidx.room.*
 import kotlinx.coroutines.flow.Flow
 
+@Dao
 interface CartDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(cartProduct: CartProduct)
-
-//    @Update(onConflict = OnConflictStrategy.REPLACE)
-//    fun update(user: CurrentUser)
 
     @Delete(entity = CartProduct::class)
     fun delete(cartProduct: CartProduct)

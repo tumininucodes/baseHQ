@@ -7,4 +7,5 @@
     <string name="password">Password</string>
     <string name="login">Login</string>
     <string name="logo">logo</string>
+    <string name="price">$%f</string>
 </resources>

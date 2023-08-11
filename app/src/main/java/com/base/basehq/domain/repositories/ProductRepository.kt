@@ -32,13 +32,13 @@ class ProductRepository {
     }
 
 
-    fun getProductsInCategory(): MutableStateFlow<NetworkResult<List<Product>>> {
+    fun getProductsInCategory(category: String): MutableStateFlow<NetworkResult<List<Product>>> {
 
         val productsState = MutableStateFlow<NetworkResult<List<Product>>>(NetworkResult.Loading)
 
         CoroutineScope(Dispatchers.IO).launch {
             try {
-                val response = ApiClient.retrofitService.getProductInCategory()
+                val response = ApiClient.retrofitService.getProductInCategory(category)
                 if (response.isSuccessful && response.body() != null) {
                     productsState.emit(NetworkResult.Success(response.body()!!))
                 } else {

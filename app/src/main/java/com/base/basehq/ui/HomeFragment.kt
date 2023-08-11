@@ -44,9 +44,7 @@ class HomeFragment : Fragment(), OnCategoryClickListener {
                         binding.progressBar.visibility = View.VISIBLE
                     }
                     is NetworkResult.Success -> {
-                        println("result: ${resultState.data}")
                         binding.progressBar.visibility = View.GONE
-
                         binding.rvCategories.adapter = adapter
                         binding.rvCategories.layoutManager = GridLayoutManager(requireContext(), 2)
                         binding.rvCategories.setHasFixedSize(true)

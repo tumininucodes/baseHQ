@@ -7,6 +7,7 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
+import retrofit2.http.Path
 
 
 interface ApiService {
@@ -15,8 +16,10 @@ interface ApiService {
     suspend fun getAllCategories(): Response<List<String>>
 
 
-    @GET("products/categories")
-    suspend fun getProductInCategory(): Response<List<Product>>
+    @GET("products/category/{category}")
+    suspend fun getProductInCategory(
+        @Path("category") category: String,
+    ): Response<List<Product>>
 
 }
 

@@ -10,7 +10,7 @@ import kotlinx.coroutines.launch
 
 class ProductRepository {
 
-    fun getAllCategories(): MutableStateFlow<NetworkResult<List<String>>> {
+    fun getAllCategoriesFromNetwork(): MutableStateFlow<NetworkResult<List<String>>> {
 
         val categoriesState = MutableStateFlow<NetworkResult<List<String>>>(NetworkResult.Loading)
 

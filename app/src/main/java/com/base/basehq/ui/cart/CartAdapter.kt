@@ -7,9 +7,11 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.base.basehq.R
 import com.base.basehq.data.db.cart.CartProduct
 import com.base.basehq.databinding.ChildCartBinding
 import com.base.basehq.domain.interfaces.OnCartProductClickListener
+import com.base.basehq.utils.capitalise
 import com.bumptech.glide.Glide
 
 class CartAdapter(val context: Context, private val listener: OnCartProductClickListener) :
@@ -43,8 +45,10 @@ class CartAdapter(val context: Context, private val listener: OnCartProductClick
         with(holder) {
             Glide.with(context).load(cartProduct.image).into(binding.ivProductImage)
             binding.tvProductTitle.text = cartProduct.title
-            binding.tvProductCost.text = cartProduct.price.toString()
-            binding.tvProductDescription.text = cartProduct.description
+            val price = context.getString(R.string.price, cartProduct.price)
+            binding.tvProductCost.text =
+                price.substring(startIndex = 0, endIndex = price.indexOf(".").plus(3))
+            binding.tvProductCategory.text = cartProduct.category.capitalise()
         }
     }
 

@@ -27,21 +27,24 @@ cd /path/to/your/project
 - Build the Project:
 To build your Android project, including compiling sources and generating the APK, use the following command:
 
-sh
+```sh
 ./gradlew build
-If you're on Windows, use gradlew.bat instead:
+```
+If you're on Windows, use `gradlew.bat` instead:
 
-sh
+```sh
 gradlew.bat build
+```
 
 - Install and Run the App on a Connected Device or Emulator:
 Once the project is built, you can install and run the app on a connected device or emulator using the installDebug task:
 
-sh
+```sh
 ./gradlew installDebug
+```
 
 On Windows:
-gradlew.bat installDebug
+`gradlew.bat installDebug`
 
 
-Remember to replace ./gradlew with gradlew.bat if you're on Windows.
+Remember to replace `./gradlew` with `gradlew.bat` if you're on Windows.

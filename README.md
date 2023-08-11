@@ -17,7 +17,7 @@ get quality products at all times. The mobile is built with kotlin
 
 ## run app
 
-The built apk titled "app-de" can be found on the project base directory
+The built apk titled "BaseHQ.apk" can be found on the project base directory
 
 To build and run an Android project using the Gradle command-line interface (CLI), you need to navigate to the root directory of your Android project where the build.gradle file is located. From there, you can use Gradle commands to build, install, and run your project. Here are the basic steps and commands:
 

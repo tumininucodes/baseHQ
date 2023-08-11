@@ -3,7 +3,7 @@ MVVM android app that acts as a vital tool for the users to access relevant prod
 
 ## overview
 BaseHQ aims to empower its users with technology-driven solutions to help them
-get quality products at all times. The mobile is built with kotlin
+get quality products at all times. Built with kotlin
 
 ## screenshots
 ![alt text](https://github.com/tumininucodes/baseHQ/blob/main/Screenshot%202023-08-11%20at%2011.46.59.png)

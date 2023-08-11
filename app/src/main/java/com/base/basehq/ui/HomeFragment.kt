@@ -7,14 +7,16 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.GridLayoutManager
 import com.base.basehq.R
 import com.base.basehq.databinding.FragmentHomeBinding
+import com.base.basehq.domain.interfaces.OnCategoryClickListener
 import com.base.basehq.utils.NetworkResult
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
-class HomeFragment : Fragment() {
+class HomeFragment : Fragment(), OnCategoryClickListener {
 
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
@@ -33,7 +35,7 @@ class HomeFragment : Fragment() {
             ViewModelProvider.NewInstanceFactory.instance
         )[HomeViewModel::class.java]
 
-        adapter = CategoryAdapter()
+        adapter = CategoryAdapter(this)
 
         lifecycleScope.launch {
             viewModel.getAllCategories().collect { resultState ->
@@ -60,6 +62,12 @@ class HomeFragment : Fragment() {
 
 
         return binding.root
+    }
+
+    override fun onItemClick(item: String, position: Int) {
+        Navigation.findNavController(requireActivity(), R.id.homeHost).navigate(
+            HomeFragmentDirections.actionHomeFragmentToCategoryFragment(item)
+        )
     }
 
 }

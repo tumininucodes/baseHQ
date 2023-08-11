@@ -20,8 +20,9 @@ To build and run an Android project using the Gradle command-line interface (CLI
 - Navigate to Project Directory:
 Open a terminal window and use the cd command to navigate to the root directory of your Android project:
 
-sh
+```sh
 cd /path/to/your/project
+```
 
 - Build the Project:
 To build your Android project, including compiling sources and generating the APK, use the following command:

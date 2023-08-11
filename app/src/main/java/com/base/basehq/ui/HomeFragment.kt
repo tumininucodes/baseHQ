@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.base.basehq.R
 import com.base.basehq.databinding.FragmentHomeBinding
 import com.base.basehq.domain.interfaces.OnCategoryClickListener
+import com.base.basehq.utils.GridRecyclerViewSpacing
 import com.base.basehq.utils.NetworkResult
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
@@ -51,7 +52,6 @@ class HomeFragment : Fragment(), OnCategoryClickListener {
                         adapter.submitList(resultState.data)
                     }
                     is NetworkResult.Error -> {
-                        println("result error: ${resultState.error.message}")
                         binding.progressBar.visibility = View.GONE
                     }
                 }

@@ -45,7 +45,6 @@ class ProductAdapter(val context: Context, private val listener: OnProductClickL
         with(holder) {
             Glide.with(context).load(product.image).into(binding.ivProductImage)
             binding.tvProductTitle.text = product.title
-            println(product.price)
             val price = context.getString(R.string.price, product.price)
             binding.tvProductPrice.text =
                 price.substring(startIndex = 0, endIndex = price.indexOf(".").plus(3))

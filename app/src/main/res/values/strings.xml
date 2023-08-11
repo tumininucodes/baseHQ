@@ -8,4 +8,5 @@
     <string name="login">Login</string>
     <string name="logo">logo</string>
     <string name="price">$%f</string>
+    <string name="description">Description</string>
 </resources>

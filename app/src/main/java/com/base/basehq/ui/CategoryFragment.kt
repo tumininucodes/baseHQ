@@ -13,6 +13,7 @@ import com.base.basehq.R
 import com.base.basehq.databinding.FragmentCategoryBinding
 import com.base.basehq.domain.interfaces.OnProductClickListener
 import com.base.basehq.domain.models.Product
+import com.base.basehq.utils.GridRecyclerViewSpacing
 import com.base.basehq.utils.NetworkResult
 import com.base.basehq.utils.capitalise
 import kotlinx.coroutines.launch
@@ -56,7 +57,6 @@ class CategoryFragment : Fragment(), OnProductClickListener {
                         adapter.submitList(productsState.data)
                     }
                     is NetworkResult.Error -> {
-                        println("products ${productsState.error.message}")
                         binding.progressBar.visibility = View.GONE
                     }
                 }
@@ -73,7 +73,9 @@ class CategoryFragment : Fragment(), OnProductClickListener {
     }
 
     override fun onItemClick(item: Product, position: Int) {
-
+        Navigation.findNavController(requireActivity(), R.id.homeHost).navigate(
+            CategoryFragmentDirections.actionCategoryFragmentToProductFragment(item)
+        )
     }
 
 }

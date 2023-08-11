@@ -8,4 +8,4 @@ data class Product(
     var category: String?,
     var image: String?,
     var rating: Rating?,
-)
+) : java.io.Serializable

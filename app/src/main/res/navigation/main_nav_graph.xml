@@ -21,7 +21,11 @@
         android:id="@+id/productFragment"
         android:name="com.base.basehq.ui.ProductFragment"
         android:label="fragment_product"
-        tools:layout="@layout/fragment_product" />
+        tools:layout="@layout/fragment_product">
+        <argument
+            android:name="product"
+            app:argType="com.base.basehq.domain.models.Product" />
+    </fragment>
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.base.basehq.ui.HomeFragment"

@@ -6,6 +6,8 @@ BaseHQ aims to empower its users with technology-driven solutions to help them
 get quality products at all times. The mobile is built with kotlin
 
 ## screenshots
+![alt text](https://github.com/tumininucodes/baseHQ/blob/main/Screenshot%202023-08-11%20at%2011.46.59.png)
+
 
 ## used
 - Koin (Dependency Injection)

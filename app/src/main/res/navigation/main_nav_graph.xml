@@ -25,6 +25,9 @@
         <argument
             android:name="product"
             app:argType="com.base.basehq.domain.models.Product" />
+        <action
+            android:id="@+id/action_productFragment_to_cartFragment"
+            app:destination="@id/cartFragment" />
     </fragment>
     <fragment
         android:id="@+id/homeFragment"

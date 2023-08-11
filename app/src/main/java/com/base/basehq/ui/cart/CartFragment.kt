@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.base.basehq.data.db.cart.CartProduct
 import com.base.basehq.databinding.FragmentCartBinding
 import com.base.basehq.domain.interfaces.OnCartProductClickListener
@@ -31,7 +32,10 @@ class CartFragment : Fragment(), OnCartProductClickListener {
 
         lifecycleScope.launch {
             viewModel.getCartProducts().collect {
-                println(it)
+                binding.rvCart.adapter = adapter
+                binding.rvCart.layoutManager = LinearLayoutManager(requireContext())
+                binding.rvCart.setHasFixedSize(true)
+                adapter.submitList(it)
             }
         }
 
@@ -39,7 +43,7 @@ class CartFragment : Fragment(), OnCartProductClickListener {
     }
 
     override fun onItemClick(item: CartProduct, position: Int) {
-
+        viewModel.removeCartProduct(item)
     }
 
 }

@@ -1,20 +1,15 @@
-package com.base.basehq.ui
+package com.base.basehq.ui.categories
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.RecyclerView.ViewHolder
-import androidx.recyclerview.widget.RecyclerView.inflate
 import com.base.basehq.R
 import com.base.basehq.databinding.ChildCategoryBinding
 import com.base.basehq.domain.interfaces.OnCategoryClickListener
 import com.base.basehq.utils.capitalise
-import kotlinx.coroutines.flow.combine
 
 class CategoryAdapter(private val listener: OnCategoryClickListener) :
     ListAdapter<String, CategoryAdapter.ViewHolder>(COMPARATOR) {

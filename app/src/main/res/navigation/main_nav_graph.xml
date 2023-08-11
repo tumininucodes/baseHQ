@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/categoryFragment"
-        android:name="com.base.basehq.ui.CategoryFragment"
+        android:name="com.base.basehq.ui.categories.CategoryFragment"
         android:label="fragment_category"
         tools:layout="@layout/fragment_category">
         <action
@@ -19,19 +19,19 @@
     </fragment>
     <fragment
         android:id="@+id/productFragment"
-        android:name="com.base.basehq.ui.ProductFragment"
+        android:name="com.base.basehq.ui.product.ProductFragment"
         android:label="fragment_product"
         tools:layout="@layout/fragment_product">
-        <argument
-            android:name="product"
-            app:argType="com.base.basehq.domain.models.Product" />
         <action
             android:id="@+id/action_productFragment_to_cartFragment"
             app:destination="@id/cartFragment" />
+        <argument
+            android:name="product"
+            app:argType="com.base.basehq.data.db.product.Product" />
     </fragment>
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.base.basehq.ui.HomeFragment"
+        android:name="com.base.basehq.ui.home.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" >
         <action

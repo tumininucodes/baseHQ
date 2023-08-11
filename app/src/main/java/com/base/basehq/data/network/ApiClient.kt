@@ -1,6 +1,6 @@
 package com.base.basehq.data.network
 
-import com.base.basehq.domain.models.Product
+import com.base.basehq.data.db.product.Product
 import com.base.basehq.utils.Constants
 import com.base.basehq.utils.Constants.moshi
 import retrofit2.Response

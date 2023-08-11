@@ -1,7 +1,7 @@
 package com.base.basehq.domain.repositories
 
 import com.base.basehq.data.network.ApiClient
-import com.base.basehq.domain.models.Product
+import com.base.basehq.data.db.product.Product
 import com.base.basehq.utils.NetworkResult
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers

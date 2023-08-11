@@ -1,4 +1,4 @@
-package com.base.basehq.ui
+package com.base.basehq.ui.product
 
 import android.os.Bundle
 import android.text.method.ScrollingMovementMethod
@@ -10,9 +10,8 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
 import com.base.basehq.R
 import com.base.basehq.databinding.FragmentProductBinding
-import com.base.basehq.domain.models.Product
+import com.base.basehq.data.db.product.Product
 import com.bumptech.glide.Glide
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 

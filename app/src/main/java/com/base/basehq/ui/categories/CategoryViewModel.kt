@@ -1,9 +1,9 @@
-package com.base.basehq.ui
+package com.base.basehq.ui.categories
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.base.basehq.data.db.category.CategoryDatabase
-import com.base.basehq.data.db.category.ProductCategory
+import com.base.basehq.data.db.product.Product
+import com.base.basehq.data.db.product.ProductDatabase
 import com.base.basehq.domain.repositories.ProductRepository
 import com.base.basehq.utils.NetworkResult
 import kotlinx.coroutines.Dispatchers
@@ -11,32 +11,31 @@ import kotlinx.coroutines.cancel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
 
-class HomeViewModel(private val database: CategoryDatabase) : ViewModel() {
+class CategoryViewModel(private val database: ProductDatabase) : ViewModel() {
 
     private val productRepository = ProductRepository()
 
-    fun getAllCategories(): MutableStateFlow<NetworkResult<List<String>>> {
-        val dao = database.categoryDao
-        val result = MutableStateFlow<NetworkResult<List<String>>>(NetworkResult.Loading)
+    fun getProductsInCategory(category: String): MutableStateFlow<NetworkResult<List<Product>>> {
+        val dao = database.productDao
+        val result = MutableStateFlow<NetworkResult<List<Product>>>(NetworkResult.Loading)
 
         viewModelScope.launch(Dispatchers.IO) {
-            dao.getProductCategories().collect { categories ->
-                if (categories.isNotEmpty()) {
-                    result.emit(NetworkResult.Success(categories.map { it.title }))
-                    getAllCategoriesFromNetwork()
+            dao.getProducts().collect { products ->
+                val filteredProducts = products.filter { it.category == category }
+                if (filteredProducts.isNotEmpty()) {
+                    result.emit(NetworkResult.Success(filteredProducts))
+                    getProductsInCategoryFromNetwork(category)
                     cancel()
                 } else {
-                    productRepository.getAllCategoriesFromNetwork().collect {
+                    productRepository.getProductsInCategory(category).collect {
                         when (it) {
                             is NetworkResult.Loading -> {
                                 result.emit(it)
                             }
                             is NetworkResult.Success -> {
                                 result.emit(it)
-                                for (dataString in it.data) {
-                                    val data = ProductCategory(id = it.data.indexOf(dataString),
-                                        title = dataString)
-                                    database.categoryDao.insert(data)
+                                for (data in it.data) {
+                                    database.productDao.insert(data)
                                 }
                             }
                             is NetworkResult.Error -> {
@@ -51,19 +50,16 @@ class HomeViewModel(private val database: CategoryDatabase) : ViewModel() {
         return result
     }
 
-    private fun getAllCategoriesFromNetwork() {
+    private fun getProductsInCategoryFromNetwork(category: String) {
         viewModelScope.launch(Dispatchers.IO) {
-            productRepository.getAllCategoriesFromNetwork().collect { resultsState ->
+            productRepository.getProductsInCategory(category).collect { resultsState ->
                 when (resultsState) {
                     is NetworkResult.Loading -> {
                     }
                     is NetworkResult.Success -> {
-                        for (dataString in resultsState.data) {
-                            val data = ProductCategory(id = resultsState.data.indexOf(dataString),
-                                title = dataString)
-                            database.categoryDao.insert(data)
+                        for (data in resultsState.data) {
+                            database.productDao.insert(data)
                         }
-
                     }
                     is NetworkResult.Error -> {
                     }
@@ -71,5 +67,6 @@ class HomeViewModel(private val database: CategoryDatabase) : ViewModel() {
             }
         }
     }
+
 
 }

@@ -1,6 +1,6 @@
 package com.base.basehq.domain.interfaces
 
-import com.base.basehq.domain.models.Product
+import com.base.basehq.data.db.product.Product
 
 
 interface OnProductClickListener {

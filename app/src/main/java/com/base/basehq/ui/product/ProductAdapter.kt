@@ -1,4 +1,4 @@
-package com.base.basehq.ui
+package com.base.basehq.ui.product
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -7,11 +7,10 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.base.basehq.R
 import com.base.basehq.databinding.ChildProductBinding
 import com.base.basehq.domain.interfaces.OnProductClickListener
-import com.base.basehq.domain.models.Product
+import com.base.basehq.data.db.product.Product
 import com.bumptech.glide.Glide
 
 class ProductAdapter(val context: Context, private val listener: OnProductClickListener) :

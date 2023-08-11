@@ -1,29 +1,29 @@
-package com.base.basehq.ui
+package com.base.basehq.ui.categories
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.GridLayoutManager
 import com.base.basehq.R
 import com.base.basehq.databinding.FragmentCategoryBinding
 import com.base.basehq.domain.interfaces.OnProductClickListener
-import com.base.basehq.domain.models.Product
-import com.base.basehq.utils.GridRecyclerViewSpacing
+import com.base.basehq.data.db.product.Product
+import com.base.basehq.ui.product.ProductAdapter
 import com.base.basehq.utils.NetworkResult
 import com.base.basehq.utils.capitalise
 import kotlinx.coroutines.launch
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
 class CategoryFragment : Fragment(), OnProductClickListener {
 
     private var _binding: FragmentCategoryBinding? = null
     private val binding get() = _binding!!
-    private lateinit var viewModel: CategoryViewModel
+    private val viewModel: CategoryViewModel by viewModel()
     private lateinit var adapter: ProductAdapter
 
     override fun onCreateView(
@@ -35,11 +35,6 @@ class CategoryFragment : Fragment(), OnProductClickListener {
         val args = CategoryFragmentArgs.fromBundle(
             Bundle(arguments)
         )
-
-        viewModel = ViewModelProvider(
-            this,
-            ViewModelProvider.NewInstanceFactory.instance
-        )[CategoryViewModel::class.java]
 
         adapter = ProductAdapter(requireContext(), this)
 
@@ -74,7 +69,8 @@ class CategoryFragment : Fragment(), OnProductClickListener {
 
     override fun onItemClick(item: Product, position: Int) {
         Navigation.findNavController(requireActivity(), R.id.homeHost).navigate(
-            CategoryFragmentDirections.actionCategoryFragmentToProductFragment(item)
+            CategoryFragmentDirections.actionCategoryFragmentToProductFragment(
+                item)
         )
     }
 

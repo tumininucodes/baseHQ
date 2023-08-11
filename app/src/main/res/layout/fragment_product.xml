@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.ProductFragment">
+    tools:context=".ui.product.ProductFragment">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -53,12 +53,12 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
-                android:textColor="@color/red"
                 android:textSize="18sp"
+                android:drawableStart="@drawable/ic_star"
                 app:layout_constraintBottom_toBottomOf="@id/tvProductPrice"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/tvProductPrice"
-                tools:text="4.0/5.0" />
+                tools:text="4.0" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnAddToCart"

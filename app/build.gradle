@@ -55,6 +55,9 @@ dependencies {
     implementation 'com.squareup.moshi:moshi:1.12.0'
     implementation 'com.squareup.moshi:moshi-kotlin:1.12.0'
 
+    // Koin Dependency Injection
+    implementation "io.insert-koin:koin-android:3.4.1"
+
     // Retrofit
     implementation 'com.squareup.retrofit2:retrofit:2.6.0'
     implementation 'com.squareup.retrofit2:converter-moshi:2.6.0'

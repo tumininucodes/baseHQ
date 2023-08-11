@@ -8,6 +8,7 @@ import com.base.basehq.domain.models.Product
 import com.base.basehq.domain.repositories.ProductRepository
 import com.base.basehq.utils.NetworkResult
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
 
@@ -18,6 +19,11 @@ class ProductViewModel(private val database: CartDatabase) : ViewModel() {
         viewModelScope.launch(Dispatchers.IO) {
             dao.insert(cartProduct)
         }
+    }
+
+    fun getCartProducts(): Flow<List<CartProduct>> {
+        val dao = database.cartDao
+        return dao.getProductsFromCart()
     }
 
 }

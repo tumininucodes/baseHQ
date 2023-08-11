@@ -10,7 +10,6 @@ import kotlinx.coroutines.launch
 
 class ProductRepository {
 
-
     fun getAllCategories(): MutableStateFlow<NetworkResult<List<String>>> {
 
         val categoriesState = MutableStateFlow<NetworkResult<List<String>>>(NetworkResult.Loading)
@@ -20,6 +19,7 @@ class ProductRepository {
                 val response = ApiClient.retrofitService.getAllCategories()
                 if (response.isSuccessful && response.body() != null) {
                     categoriesState.emit(NetworkResult.Success(response.body()!!))
+
                 } else {
                     categoriesState.emit(NetworkResult.Error(Throwable("Error fetching categories")))
                 }

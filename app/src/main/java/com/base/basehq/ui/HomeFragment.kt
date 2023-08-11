@@ -16,12 +16,13 @@ import com.base.basehq.utils.GridRecyclerViewSpacing
 import com.base.basehq.utils.NetworkResult
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HomeFragment : Fragment(), OnCategoryClickListener {
 
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
-    private lateinit var viewModel: HomeViewModel
+    private val viewModel: HomeViewModel by viewModel()
     private lateinit var adapter: CategoryAdapter
 
     override fun onCreateView(
@@ -30,11 +31,6 @@ class HomeFragment : Fragment(), OnCategoryClickListener {
     ): View {
 
         _binding = FragmentHomeBinding.inflate(inflater)
-
-        viewModel = ViewModelProvider(
-            this,
-            ViewModelProvider.NewInstanceFactory.instance
-        )[HomeViewModel::class.java]
 
         adapter = CategoryAdapter(this)
 

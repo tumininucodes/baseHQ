@@ -6,125 +6,138 @@
     android:layout_height="match_parent"
     tools:context=".ui.ProductFragment">
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:scrollbars="none"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/ivProductImage"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:contentDescription="@string/product_image"
+                android:padding="16dp"
+                android:src="@drawable/category"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tvProductTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="16dp"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintTop_toBottomOf="@+id/ivProductImage"
+                tools:text="@string/app_name" />
+
+            <TextView
+                android:id="@+id/tvProductPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:textColor="@color/green"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvProductTitle"
+                tools:text="$10.00" />
+
+            <TextView
+                android:id="@+id/tvProductRating"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:textColor="@color/red"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="@id/tvProductPrice"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/tvProductPrice"
+                tools:text="4.0/5.0" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnAddToCart"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="8dp"
+                android:backgroundTint="@color/green"
+                android:text="Add to cart"
+                android:textAllCaps="false"
+                app:cornerRadius="20dp"
+                app:layout_constraintTop_toBottomOf="@id/tvProductPrice"
+                tools:visibility="invisible" />
+
+            <LinearLayout
+                android:id="@+id/lyAddedToCart"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="8dp"
+                android:visibility="gone"
+                app:layout_constraintTop_toBottomOf="@id/tvProductPrice"
+                tools:visibility="visible">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Added to Cart" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnCheckout"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_weight="1"
+                    android:backgroundTint="@color/green"
+                    android:text="Checkout"
+                    android:textAllCaps="false"
+                    app:cornerRadius="20dp" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tvDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:text="@string/description"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintTop_toBottomOf="@id/btnAddToCart" />
+
+            <TextView
+                android:id="@+id/tvProductDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="17sp"
+                android:padding="16dp"
+                app:layout_constraintTop_toBottomOf="@+id/tvDescription"
+                tools:text="Description" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
     <ImageView
         android:id="@+id/ivBack"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
+        android:background="@drawable/circle_bg"
         android:clickable="true"
         android:elevation="2dp"
         android:focusable="true"
-        android:background="@drawable/circle_bg"
         android:padding="8dp"
-        app:tint="@color/white"
         android:src="@drawable/ic_arrow_back"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-        android:id="@+id/ivProductImage"
-        android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:src="@drawable/category"
-        android:padding="16dp"
         app:layout_constraintTop_toTopOf="parent"
-        android:contentDescription="@string/product_image" />
-
-    <TextView
-        android:id="@+id/tvProductTitle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingHorizontal="16dp"
-        android:textStyle="bold"
-        android:textSize="18sp"
-        app:layout_constraintTop_toBottomOf="@+id/ivProductImage"
-        tools:text="@string/app_name" />
-
-    <TextView
-        android:id="@+id/tvProductPrice"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textStyle="bold"
-        android:layout_marginStart="16dp"
-        android:textColor="@color/green"
-        android:layout_marginTop="8dp"
-        android:textSize="22sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvProductTitle"
-        tools:text="$10.00" />
-
-    <TextView
-        android:id="@+id/tvProductRating"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:layout_marginTop="8dp"
-        android:textColor="@color/red"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/tvProductPrice"
-        app:layout_constraintBottom_toBottomOf="@id/tvProductPrice"
-        tools:text="4.0/5.0" />
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btnAddToCart"
-        android:layout_width="match_parent"
-        android:text="Add to cart"
-        android:backgroundTint="@color/green"
-        android:layout_marginHorizontal="16dp"
-        android:layout_marginTop="8dp"
-        tools:visibility="invisible"
-        app:layout_constraintTop_toBottomOf="@id/tvProductPrice"
-        android:textAllCaps="false"
-        app:cornerRadius="20dp"
-        android:layout_height="wrap_content" />
-
-    <LinearLayout
-        android:id="@+id/lyAddedToCart"
-        android:visibility="gone"
-        tools:visibility="visible"
-        android:layout_width="match_parent"
-        android:layout_marginHorizontal="16dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintTop_toBottomOf="@id/tvProductPrice"
-        android:layout_height="wrap_content">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:text="Added to Cart"
-            android:layout_height="wrap_content" />
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnCheckout"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:textAllCaps="false"
-            android:layout_marginStart="20dp"
-            app:cornerRadius="20dp"
-            android:backgroundTint="@color/green"
-            android:text="Checkout"
-            android:layout_height="wrap_content" />
-    </LinearLayout>
-
-    <TextView
-        android:id="@+id/tvDescription"
-        android:layout_width="match_parent"
-        android:text="@string/description"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:textStyle="bold"
-        android:textSize="16sp"
-        app:layout_constraintTop_toBottomOf="@id/btnAddToCart"
-        android:layout_height="wrap_content" />
-
-    <TextView
-        android:id="@+id/tvProductDescription"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="16dp"
-        android:textSize="17sp"
-        app:layout_constraintTop_toBottomOf="@+id/tvDescription"
-        tools:text="Description" />
+        app:tint="@color/white" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
